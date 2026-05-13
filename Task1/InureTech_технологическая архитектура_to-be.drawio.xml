@@ -1,0 +1,222 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Final-To-Be" id="insuretech-tobe-final">
+    <mxGraphModel dx="2054" dy="1111" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="users" parent="1" style="shape=mxgraph.kubernetes.icon2;prIcon=user;fillColor=#2875E2;strokeColor=#ffffff;verticalLabelPosition=bottom;verticalAlign=top;html=1;" value="Клиенты и Партнеры (РФ)" vertex="1">
+          <mxGeometry height="50" width="50" x="557" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="glb" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3ebff;strokeColor=#5282ff;fontStyle=1" value="Global Load Balancer &amp; Cloud DNS&#xa;(Гео-балансировка / Anycast IP)" vertex="1">
+          <mxGeometry height="50" width="350" x="409" y="106" as="geometry" />
+        </mxCell>
+        <mxCell id="cdn" parent="1" style="shape=stencil(vVNdD4IgFP01POIQms1nq//BEpVF4q6U9u/DoFJxPdjm2/04cO65cBDL2oo3AlHSGtAX0cncVIgdEKWyrgRIYyPEjohlhQZRgr7VucsbPiCH6Krvww29O0eGE5Q8XJaSaPcqnByWw9k2wWNZRFMHhzc+SlwhQHhATDxBj3kvWwzacCN1PSFXHEqBLRcuFC8nrbYTognKfjol65GSNIn28SL5SjGf2efL2UBMwO1nWykl3M1mzxJ8ib/eZHkrG8j47RMbfA1WSKWcP8f9uSFtyZmZHZ8=);strokeColor=#5282ff;fillColor=none;html=1;align=center;verticalAlign=bottom" value="CDN Edge Nodes&#xa;(Кэширование статики)" vertex="1">
+          <mxGeometry height="80" width="160" x="840" y="85" as="geometry" />
+        </mxCell>
+        <mxCell id="k8s" parent="1" style="swimlane;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#5282ff;dashed=1;dashPattern=8 8" value="Regional Kubernetes Cluster (Stretched across 3 AZs) - Availability 99.9%" vertex="1">
+          <mxGeometry height="500" width="1120" x="20" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="az-a" parent="k8s" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f5faff;strokeColor=#5282ff" value="AZ-A (Primary Zone)" vertex="1">
+          <mxGeometry height="440" width="340" x="20" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ing-a" parent="az-a" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" value="Ingress (Nginx)&#xa;Rate Limit: 20 RPS" vertex="1">
+          <mxGeometry height="40" width="150" x="20" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="core-a" parent="az-a" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf" value="core-app" vertex="1">
+          <mxGeometry height="30" width="150" x="20" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="info-a" parent="az-a" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf" value="client-info" vertex="1">
+          <mxGeometry height="30" width="150" x="20" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="agg-a" parent="az-a" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf" value="ins-product-aggregator" vertex="1">
+          <mxGeometry height="30" width="150" x="20" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="settle-a" parent="az-a" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf" value="ins-comp-settlement" vertex="1">
+          <mxGeometry height="30" width="150" x="20" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="db-m" parent="az-a" style="shape=image;verticalLabelPosition=bottom;verticalAlign=top;imageAspect=0;aspect=fixed;image=data:image/svg+xml,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIiBmaWxsPSJub25lIj4mI3hhOzxwYXRoIGQ9Ik0wIDE2QzAgNy4xNjM0NCA3LjE2MzQ0IDAgMTYgMFYwQzI0LjgzNjYgMCAzMiA3LjE2MzQ0IDMyIDE2VjE2QzMyIDI0LjgzNjYgMjQuODM2NiAzMiAxNiAzMlYzMkM3LjE2MzQ0IDMyIDAgMjQuODM2NiAwIDE2VjE2WiIgZmlsbD0iIzUyODJGRiIvPiYjeGE7PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMyA4SDE4QzIxLjMgOCAyNCAxMC43IDI0IDE0VjI0SDIwVjIwSDIyVjE5SDE4LjZDMTUuNSAxOSAxMyAxNi41IDEzIDEzLjRWOFpNMTkgMTdIMjFWMTVIMTlWMTdaTTEyIDkuMDk5OThWMTMuNEMxMiAxNi44IDE0LjYgMTkuNyAxOCAyMC4xVjIwLjZDMTggMjIgMTUuOCAyMy4xIDEzIDIzLjFDMTAuMiAyMy4xIDggMjIgOCAyMC42VjExLjZDOCAxMC4zIDkuNyA5LjI5OTk4IDEyIDkuMDk5OThaIiBmaWxsPSJ3aGl0ZSIvPiYjeGE7PC9zdmc+;" value="PostgreSQL&#xa;Master" vertex="1">
+          <mxGeometry height="50" width="50" x="250" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="e-core" edge="1" parent="az-a" source="ing-a" target="core-a">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-core" connectable="0" parent="e-core" value="Передача запроса" vertex="1">
+          <mxGeometry relative="1" x="-0.2" y="10" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-info" edge="1" parent="az-a" source="core-a" target="info-a">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-info" connectable="0" parent="e-info" value="Данные клиента" vertex="1">
+          <mxGeometry relative="1" x="0.3" y="10" as="geometry">
+            <mxPoint y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-agg" edge="1" parent="az-a" source="core-a" target="agg-a">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="190" y="125" />
+              <mxPoint x="190" y="245" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl-agg" connectable="0" parent="e-agg" value="Поиск страховок" vertex="1">
+          <mxGeometry relative="1" x="-0.5" y="10" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-set" edge="1" parent="az-a" source="core-a" target="settle-a">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="200" y="125" />
+              <mxPoint x="200" y="305" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl-set" connectable="0" parent="e-set" value="Оформление полиса" vertex="1">
+          <mxGeometry relative="1" x="-0.6" y="15" as="geometry">
+            <mxPoint x="25" y="17" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-db" edge="1" parent="az-a" source="core-a" target="db-m">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="275" y="125" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl-db" connectable="0" parent="e-db" value="Read/Write БД" vertex="1">
+          <mxGeometry relative="1" x="0.5" y="-15" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="az-b" parent="k8s" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f5faff;strokeColor=#5282ff" value="AZ-B" vertex="1">
+          <mxGeometry height="440" width="340" x="380" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ing-b" parent="az-b" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" value="Ingress (Nginx)" vertex="1">
+          <mxGeometry height="40" width="150" x="20" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="core-b" parent="az-b" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf" value="core-app" vertex="1">
+          <mxGeometry height="30" width="150" x="20" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="db-s" parent="az-b" style="shape=image;verticalLabelPosition=bottom;verticalAlign=top;imageAspect=0;aspect=fixed;image=data:image/svg+xml,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIiBmaWxsPSJub25lIj4mI3hhOzxwYXRoIGQ9Ik0wIDE2QzAgNy4xNjM0NCA3LjE2MzQ0IDAgMTYgMFYwQzI0LjgzNjYgMCAzMiA3LjE2MzQ0IDMyIDE2VjE2QzMyIDI0LjgzNjYgMjQuODM2NiAzMiAxNiAzMlYzMkM3LjE2MzQ0IDMyIDAgMjQuODM2NiAwIDE2VjE2WiIgZmlsbD0iIzUyODJGRiIvPiYjeGE7PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMyA4SDE4QzIxLjMgOCAyNCAxMC43IDI0IDE0VjI0SDIwVjIwSDIyVjE5SDE4LjZDMTUuNSAxOSAxMyAxNi41IDEzIDEzLjRWOFpNMTkgMTdIMjFWMTVIMTlWMTdaTTEyIDkuMDk5OThWMTMuNEMxMiAxNi44IDE0LjYgMTkuNyAxOCAyMC4xVjIwLjZDMTggMjIgMTUuOCAyMy4xIDEzIDIzLjFDMTAuMiAyMy4xIDggMjIgOCAyMC42VjExLjZDOCAxMC4zIDkuNyA5LjI5OTk4IDEyIDkuMDk5OThaIiBmaWxsPSJ3aGl0ZSIvPiYjeGE7PC9zdmc+;" value="PostgreSQL&#xa;Sync Replica" vertex="1">
+          <mxGeometry height="50" width="50" x="250" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="az-c" parent="k8s" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f5faff;strokeColor=#5282ff" value="AZ-C (Disaster Recovery)" vertex="1">
+          <mxGeometry height="440" width="340" x="740" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ing-c" parent="az-c" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" value="Ingress (Nginx)" vertex="1">
+          <mxGeometry height="40" width="150" x="20" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="db-a" parent="az-c" style="shape=image;verticalLabelPosition=bottom;verticalAlign=top;imageAspect=0;aspect=fixed;image=data:image/svg+xml,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIiBmaWxsPSJub25lIj4mI3hhOzxwYXRoIGQ9Ik0wIDE2QzAgNy4xNjM0NCA3LjE2MzQ0IDAgMTYgMFYwQzI0LjgzNjYgMCAzMiA3LjE2MzQ0IDMyIDE2VjE2QzMyIDI0LjgzNjYgMjQuODM2NiAzMiAxNiAzMlYzMkM3LjE2MzQ0IDMyIDAgMjQuODM2NiAwIDE2VjE2WiIgZmlsbD0iIzUyODJGRiIvPiYjeGE7PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMyA4SDE4QzIxLjMgOCAyNCAxMC43IDI0IDE0VjI0SDIwVjIwSDIyVjE5SDE4LjZDMTUuNSAxOSAxMyAxNi41IDEzIDEzLjRWOFpNMTkgMTdIMjFWMTVIMTlWMTdaTTEyIDkuMDk5OThWMTMuNEMxMiAxNi44IDE0LjYgMTkuNyAxOCAyMC4xVjIwLjZDMTggMjIgMTUuOCAyMy4xIDEzIDIzLjFDMTAuMiAyMy4xIDggMjIgOCAyMC42VjExLjZDOCAxMC4zIDkuNyA5LjI5OTk4IDEyIDkuMDk5OThaIiBmaWxsPSJ3aGl0ZSIvPiYjeGE7PC9zdmc+;" value="PostgreSQL&#xa;Async Replica" vertex="1">
+          <mxGeometry height="50" width="50" x="250" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="e-rsync" edge="1" parent="k8s" source="db-m" target="db-s">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-rsync" connectable="0" parent="e-rsync" style="fontColor=#FF0000;" value="Синхронная репликация (RPO=0)" vertex="1">
+          <mxGeometry relative="1" x="-0.1" y="-10" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-rasync" edge="1" parent="k8s" source="db-s" target="db-a">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-rasync" connectable="0" parent="e-rasync" style="fontColor=#FF0000;" value="Асинхронная (DR)" vertex="1">
+          <mxGeometry relative="1" x="-0.1" y="-10" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ext-api" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="API Страховых компаний (Партнеры)" vertex="1">
+          <mxGeometry height="60" width="350" x="409" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" parent="1" style="shape=image;verticalLabelPosition=bottom;verticalAlign=top;imageAspect=0;aspect=fixed;image=data:image/svg+xml,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIiBmaWxsPSJub25lIj4mI3hhOzxwYXRoIGQ9Ik0wIDE2QzAgNy4xNjM0NCA3LjE2MzQ0IDAgMTYgMFYwQzI0LjgzNjYgMCAzMiA3LjE2MzQ0IDMyIDE2VjE2QzMyIDI0LjgzNjYgMjQuODM2NiAzMiAxNiAzMlYzMkM3LjE2MzQ0IDMyIDAgMjQuODM2NiAwIDE2VjE2WiIgZmlsbD0iIzUyODJGRiIvPiYjeGE7PHBhdGggZD0iTTI0IDE1VjEzSDIyVjExQzIyIDEwLjQgMjEuNiAxMCAyMSAxMEgxOVY4SDE3VjEwSDE1VjhIMTMWMTBIMTFDMTAuNCAxMCAxMCAxMC40IDEwIDExVjEzSDhWMTVIMTBWMTdIOFYxOUgxMFYyMUMxMCAyMS42IDEwLjQgMjIgMTEgMjJIMTNWMjRHMTVWMjJIMTdWMjRHMTVWMjJIMjFDMjEuNiAyMiAyMiAyMS42IDIyIDIxVjE5SDI0VjE3SDIyVjE1SDI0Wk0xOSAxOUgxM1YxM0gxOVYxOVoiIGZpbGw9IndoaXRlIi8+JiN4YTs8L3N2Zz4=;imageBorder=default;" value="Yandex Object Storage (S3)&#xa;Backups (RPO 15 min)" vertex="1">
+          <mxGeometry height="60" width="60" x="1000" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="info" parent="1" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#d5e8d4;strokeColor=#82b366" value="&lt;b&gt;Архитектура To-Be:&lt;/b&gt;&lt;br&gt;1. Availability 99.9% (Multi-AZ).&lt;br&gt;2. Изоляция B2B (Rate Limiting).&lt;br&gt;3. Geo-доступность (CDN).&lt;br&gt;4. HA Database (Patroni)." vertex="1">
+          <mxGeometry height="80" width="340" x="20" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="e-cdn" edge="1" parent="1" source="users" target="cdn">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="920" y="35" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl-cdn" connectable="0" parent="e-cdn" value="Кэш (Статика)" vertex="1">
+          <mxGeometry relative="1" x="-0.1" y="-15" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-glb" edge="1" parent="1" source="users" target="glb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-glb" connectable="0" parent="e-glb" value="&#xa;API трафик" vertex="1">
+          <mxGeometry relative="1" x="-0.2" y="10" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-ing" edge="1" parent="1" source="glb" target="k8s">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="584" y="160" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl-ing" connectable="0" parent="e-ing" value="Балансировка по зонам + Health Checks" vertex="1">
+          <mxGeometry relative="1" x="0.2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-ext1" edge="1" parent="1" source="agg-a" target="ext-api">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="115" y="650" />
+              <mxPoint x="500" y="650" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl-ext1" connectable="0" parent="e-ext1" value="REST: Запрос тарифов ОСАГО" vertex="1">
+          <mxGeometry relative="1" x="0.1" y="-10" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-ext2" edge="1" parent="1" source="settle-a" target="ext-api">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="115" y="700" />
+              <mxPoint x="584" y="700" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl-ext2" connectable="0" parent="e-ext2" value="REST: Реестры взаиморасчетов (раз в месяц)" vertex="1">
+          <mxGeometry relative="1" x="0.2" y="-10" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-s3" edge="1" parent="1" source="db-m" target="s3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="295" y="750" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl-s3" connectable="0" parent="e-s3" value="Инкрементальные бэкапы (каждые 15 мин)" vertex="1">
+          <mxGeometry relative="1" x="0.4" y="-10" as="geometry">
+            <mxPoint x="-146" y="10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dieTKi-cwFbHwQ874b_k-3" parent="1" style="verticalAlign=middle;align=center;overflow=width;vsdxID=7;fillColor=none;gradientColor=none;shape=stencil(nZBLDoAgDERP0z3SIyjew0SURgSD+Lu9kMZoXLhwN9O+tukAlrNpJg1SzDH4QW/URgNYgZTkjA4UkwJUgGXng+6DX1zLfmoymdXo17xh5zmRJ6Q42BWCfc2oJfdAr+Yv+AP9Cb7OJ3H/2JG1HNGz/84klThPVCc=);strokeColor=none;points=[];labelBackgroundColor=none;rounded=0;html=1;whiteSpace=wrap;" value="&lt;div style=&quot;font-size: 1px&quot;&gt;&lt;font style=&quot;font-size:22.58px;font-family:Arial;color:#000000;direction:ltr;letter-spacing:0px;line-height:120%;opacity:1&quot;&gt;Yandex.Cloud&lt;br/&gt;&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="28" width="214" x="895" y="692" as="geometry" />
+        </mxCell>
+        <mxCell id="dieTKi-cwFbHwQ874b_k-1" parent="1" style="vsdxID=5;fillColor=none;gradientColor=none;strokeColor=none;spacingTop=-3;spacingBottom=-3;spacingLeft=-3;spacingRight=-3;points=[];labelBackgroundColor=none;rounded=0;html=1;whiteSpace=wrap;" vertex="1">
+          <mxGeometry height="130" width="330" x="810" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="dieTKi-cwFbHwQ874b_k-2" parent="dieTKi-cwFbHwQ874b_k-1" style="vsdxID=6;fillColor=none;gradientColor=none;shape=stencil(vVNdD4IgFP01POIQms1nq//BEpVF4q6U9u/DoFJxPdjm2/04cO65cBDL2oo3AlHSGtAX0cncVIgdEKWyrgRIYyPEjohlhQZRgr7VucsbPiCH6Krvww29O0eGE5Q8XJaSaPcqnByWw9k2wWNZRFMHhzc+SlwhQHhATDxBj3kvWwzacCN1PSFXHEqBLRcuFC8nrbYTognKfjol65GSNIn28SL5SjGf2efL2UBMwO1nWykl3M1mzxJ8ib/eZHkrG8j47RMbfA1WSKWcP8f9uSFtyZmZHZ8=);strokeColor=#5282ff;spacingTop=-3;spacingBottom=-3;spacingLeft=-3;spacingRight=-3;points=[];labelBackgroundColor=none;rounded=0;html=1;whiteSpace=wrap;" vertex="1">
+          <mxGeometry height="130" width="330" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
