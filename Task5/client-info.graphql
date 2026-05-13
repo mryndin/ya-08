@@ -1,0 +1,181 @@
+# ============================================
+# GraphQL Schema for client-info service
+# Version: 1.0.0
+# ============================================
+
+# ----------------------------
+# Root Query Type
+# ----------------------------
+type Query {
+  """
+  Получить информацию о клиенте по ID.
+  Позволяет гибко выбирать запрашиваемые поля и вложенные данные.
+  """
+  client(
+    id: ID!
+    """Опционально загрузить документы клиента"""
+    includeDocuments: Boolean = false
+    """Опционально загрузить родственников клиента"""
+    includeRelatives: Boolean = false
+  ): Client
+
+  """
+  Поиск клиентов по фильтру (расширение для будущих сценариев).
+  """
+  clients(
+    filter: ClientFilterInput
+    limit: Int = 20
+    offset: Int = 0
+  ): [Client!]!
+}
+
+# ----------------------------
+# Entity Types
+# ----------------------------
+type Client {
+  """Уникальный идентификатор клиента"""
+  id: ID!
+  
+  """Полное имя клиента"""
+  name: String!
+  
+  """Возраст клиента"""
+  age: Int
+  
+  """Список документов клиента (загружается по требованию)"""
+  documents: [Document!]!
+  
+  """Список родственников клиента (загружается по требованию)"""
+  relatives: [Relative!]!
+  
+  """Метаданные: дата создания записи"""
+  createdAt: String
+  
+  """Метаданные: дата последнего обновления"""
+  updatedAt: String
+}
+
+type Document {
+  """Уникальный идентификатор документа"""
+  id: ID!
+  
+  """Тип документа: паспорт, водительское удостоверение и т.д."""
+  type: DocumentType!
+  
+  """Серия и номер документа"""
+  number: String!
+  
+  """Дата выдачи документа"""
+  issueDate: String
+  
+  """Дата окончания срока действия"""
+  expiryDate: String
+  
+  """Статус документа: активен/истёк/аннулирован"""
+  status: DocumentStatus
+}
+
+type Relative {
+  """Уникальный идентификатор родственника"""
+  id: ID!
+  
+  """Тип родственной связи"""
+  relationType: RelationType!
+  
+  """Полное имя родственника"""
+  name: String!
+  
+  """Возраст родственника"""
+  age: Int
+  
+  """Контактные данные родственника"""
+  contacts: RelativeContacts
+}
+
+type RelativeContacts {
+  phone: String
+  email: String
+  address: String
+}
+
+# ----------------------------
+# Enums
+# ----------------------------
+enum DocumentType {
+  PASSPORT
+  DRIVERS_LICENSE
+  INSURANCE_POLICY
+  BIRTH_CERTIFICATE
+  OTHER
+}
+
+enum DocumentStatus {
+  ACTIVE
+  EXPIRED
+  REVOKED
+  PENDING
+}
+
+enum RelationType {
+  SPOUSE
+  CHILD
+  PARENT
+  SIBLING
+  OTHER
+}
+
+# ----------------------------
+# Input Types (для будущих мутаций)
+# ----------------------------
+input ClientFilterInput {
+  nameContains: String
+  ageMin: Int
+  ageMax: Int
+  hasDocuments: Boolean
+}
+
+input CreateClientInput {
+  name: String!
+  age: Int
+  documents: [DocumentInput!]
+  relatives: [RelativeInput!]
+}
+
+input DocumentInput {
+  type: DocumentType!
+  number: String!
+  issueDate: String
+  expiryDate: String
+}
+
+input RelativeInput {
+  relationType: RelationType!
+  name: String!
+  age: Int
+  contacts: RelativeContactsInput
+}
+
+input RelativeContactsInput {
+  phone: String
+  email: String
+  address: String
+}
+
+# ----------------------------
+# Mutations (резерв на будущее)
+# ----------------------------
+type Mutation {
+  """Создать нового клиента"""
+  createClient(input: CreateClientInput!): Client!
+  
+  """Обновить данные клиента"""
+  updateClient(id: ID!, input: UpdateClientInput!): Client
+  
+  """Добавить документ клиенту"""
+  addDocumentToClient(clientId: ID!, input: DocumentInput!): Document!
+}
+
+input UpdateClientInput {
+  name: String
+  age: Int
+}
